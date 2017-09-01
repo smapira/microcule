@@ -1,5 +1,14 @@
 # Microcule
 
+## Flow
+
+```bash
+NAME_SPACE=registry
+IMAGE=repository-$(date +%Y-%m-%d)
+docker build -t ${NAME_SPACE}/${IMAGE} .
+docker run -it --name ${IMAGE} ${NAME_SPACE}/${IMAGE} bash
+```
+
 <a href="https://travis-ci.org/Stackvana/microcule"><img src="https://travis-ci.org/Stackvana/microcule.svg" alt="build:"></a>
 
 Software Development Kit and Command Line Interface for spawning streaming stateless HTTP [microservices](http://martinfowler.com/articles/microservices.html) for any programming language or arbitrary binary.
