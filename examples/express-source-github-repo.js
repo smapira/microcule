@@ -6,8 +6,8 @@ var logger = require('../lib/plugins/logger');
 var mschema = require('../lib/plugins/mschema');
 var bodyParser = require('../lib/plugins/bodyParser');
 var sourceGithubGist = require('../lib/plugins/sourceGithubGist');
-var sourceGithubRepo = require('../lib/plugins/sourceGithubRepo');
 var spawn = require('../lib/plugins/spawn');
+var sourceGithubRepo = require('../lib/plugins/sourceGithubRepo');
 
 var handler = spawn({
   // code: nodeService,
@@ -16,12 +16,13 @@ var handler = spawn({
 
 app.use(logger());
 
+
 // source from github repo
 app.use(sourceGithubRepo({
-  token: "1234",
-  repo: "microculevana/microservice-examples",
+  token: process.env.GIT_TOKEN,
+  repo: "smapira/microcule-examples",
   branch: "master",
-  main: "python/index.py",
+  main: "python3-tensorflow/mnist_softmax.py"
 }));
 
 app.use(bodyParser());
@@ -33,11 +34,9 @@ app.use(mschema({
 }));
 app.use(handler);
 app.use(function(req, res, next){
-  // Note: It's most likely you will not be able to call res.end or res.write here,
-  // as the microcule.plugins.spawn handler should end the response
-  // Any middlewares places after microcule.plugins.spawn should be considered "post processing" logic
   console.log('post process service');
-})
+  res.end();
+});
 
 app.listen(3000, function () {
   console.log('server started on port 3000');
