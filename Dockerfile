@@ -1,33 +1,21 @@
-FROM node:0.12.7-wheezy
+FROM smapira/docker-microcule
 
-# update apt-get
-RUN apt-get -y update && apt-get -y upgrade
-
-# install build-essential
-RUN apt-get -y install build-essential binutils debootstrap
-
-# install mon
-RUN cd /tmp; git clone https://github.com/tj/mon; cd mon; make install
+## establish environmental variables
+ARG git_access_token
+ENV GIT_TOKEN=${git_access_token}
 
 # copy basic files
 COPY . /src
-RUN export USER=root && cd /src && rm -rf ./node_modules/ && npm install && npm link
-
-# disable install modules for now
-# RUN cd /src/modules && node install.js
+RUN export USER=root
+RUN cd /src && yarn
 
 RUN addgroup workers
 RUN adduser --gid 1000 --disabled-password --gecos '' worker
-
 RUN mkdir -p /var/chroot/bin
 COPY ./bin /var/chroot/bin
 
-# COPY /bin/bash /var/chroot/bin/bash
-
-# RUN debootstrap --arch i386 wheezy /var/chroot http://httpredir.debian.org/debian
-
-# dns resolve is probably missing...
-# RUN mkdir -p /var/chroot/etc/
-# RUN echo 'nameserver 8.8.4.4' | tee -a /var/chroot/etc/resolv.conf
-
 WORKDIR /src
+#RUN mkdir /src/tensorflow && cd /src/tensorflow && git clone https://github.com/tensorflow/models.git
+
+EXPOSE 3000
+ENTRYPOINT ["/src/node_modules/.bin/nodemon", "/src/examples/express-source-github-repo.js"]
