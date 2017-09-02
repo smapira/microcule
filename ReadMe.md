@@ -1,13 +1,24 @@
 # Microcule
 
-## Flow
+## Usage
+to Run:
 
 ```bash
 NAME_SPACE=registry
-IMAGE=repository-$(date +%Y-%m-%d)
-docker build -t ${NAME_SPACE}/${IMAGE} .
-docker run -it --name ${IMAGE} ${NAME_SPACE}/${IMAGE} bash
+CONTAINER=repository-$(date +%Y-%m-%d)
+docker build -t ${NAME_SPACE}/${CONTAINER} --build-arg git_access_token=5d33fe382731f8597f71446ea003f8286c4c185a .
+docker run -d -p 3000:3000 --name ${CONTAINER} ${NAME_SPACE}/${CONTAINER} 
+
+curl http://0.0.0.0:3000?hello=aa
+
 ```
+
+## Todo
+### References
+- https://www.tensorflow.org/install/install_linux
+- https://gist.github.com/RinatMullayanov/89687a102e696b1d4cab
+- https://github.com/nodesource/distributions
+- https://stackoverflow.com/questions/43558707/tensorflow-importerror-libcusolver-so-8-0-cannot-open-shared-object-file-no
 
 <a href="https://travis-ci.org/Stackvana/microcule"><img src="https://travis-ci.org/Stackvana/microcule.svg" alt="build:"></a>
 
