@@ -21,13 +21,6 @@ docker start ${CONTAINER}
 
 ```
 
-## Todo
-### References
-- https://www.tensorflow.org/install/install_linux
-- https://gist.github.com/RinatMullayanov/89687a102e696b1d4cab
-- https://github.com/nodesource/distributions
-- https://stackoverflow.com/questions/43558707/tensorflow-importerror-libcusolver-so-8-0-cannot-open-shared-object-file-no
-
 <a href="https://travis-ci.org/Stackvana/microcule"><img src="https://travis-ci.org/Stackvana/microcule.svg" alt="build:"></a>
 
 Software Development Kit and Command Line Interface for spawning streaming stateless HTTP [microservices](http://martinfowler.com/articles/microservices.html) for any programming language or arbitrary binary.
