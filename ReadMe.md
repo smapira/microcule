@@ -15,6 +15,7 @@ curl http://localhost:3000/ocaml?hello=there
 curl http://localhost:3000/rust?hello=there
 curl http://localhost:3000/tensorflow?hello=there
 curl http://localhost:3000/tf_image?hello=there
+curl http://localhost:3000/download?url=https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/1200px-Male_gorilla_in_SF_zoo.jpg
 
 docker exec -it ${CONTAINER} bash
 docker stop ${CONTAINER} 
