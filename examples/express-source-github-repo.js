@@ -60,6 +60,18 @@ app.get('/' + lang, spawn({
   language: "python"
 }));
 
+lang = "tf_image";
+app.get('/' + lang, sourceGithubRepo({
+  token: process.env.GIT_TOKEN,
+  repo: "smapira/microcule-examples",
+  branch: "master",
+  main: "python3-tensorflow/classify_image.py"
+}));
+app.get('/' + lang, bodyParser());
+app.get('/' + lang, spawn({
+  language: "python"
+}));
+
 var rust_service = {
   language: 'rust',
   code: require('fs').readFileSync(__dirname + '/services/hello-world/hello.rs').toString()
