@@ -36,6 +36,18 @@ app.get('/' + lang, spawn({
   language: lang
 }));
 
+lang = "download";
+app.get('/' + lang, sourceGithubRepo({
+  token: process.env.GIT_TOKEN,
+  repo: "smapira/microcule-examples",
+  branch: "master",
+  main: "python3-tensorflow/download.rb"
+}));
+app.get('/' + lang, bodyParser());
+app.get('/' + lang, spawn({
+  language: "ruby"
+}));
+
 lang = "ocaml";
 app.get('/' + lang, sourceGithubRepo({
   token: process.env.GIT_TOKEN,

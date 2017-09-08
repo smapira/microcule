@@ -15,7 +15,6 @@ RUN mkdir -p /var/chroot/bin
 COPY ./bin /var/chroot/bin
 
 WORKDIR /src
-#RUN mkdir /src/tensorflow && cd /src/tensorflow && git clone https://github.com/tensorflow/models.git
 
 EXPOSE 3000
 ENTRYPOINT ["/src/node_modules/.bin/nodemon", "/src/examples/express-source-github-repo.js"]

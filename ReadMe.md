@@ -14,10 +14,12 @@ curl http://localhost:3000/ruby?hello=there
 curl http://localhost:3000/ocaml?hello=there
 curl http://localhost:3000/rust?hello=there
 curl http://localhost:3000/tensorflow?hello=there
+curl http://localhost:3000/tf_image?hello=there
 
 docker exec -it ${CONTAINER} bash
 docker stop ${CONTAINER} 
 docker start ${CONTAINER} 
+docker rm ${CONTAINER} 
 
 ```
 
